@@ -1,9 +1,14 @@
-FROM debian
-RUN apt update
-RUN apt install git wget python3 python3-pip ffmpeg -y
-RUN git clone https://github.com/tawayaka/google-drive-telegram-bot sip
-WORKDIR /sip
-RUN chmod 777 /sip
-RUN pip3 install -r requirements.txt
-RUN cd bot && rm config.py && wget https://gist.githubusercontent.com/tawayaka/2319d8ee19b83fb7488f0b995268caa6/raw/8dd777f9b5fc40ccfc106ddd44318f11b682028d/config.py
-CMD python3 -m bot
+FROM ubuntu:18.04
+LABEL org.opencontainers.image.source https://github.com/rez0n/ant-media-server
+ARG RELEASE_URL
+
+RUN apt-get update --fix-missing \
+	&& apt-get -y install libx11-dev unzip wget openjdk-11-jdk ca-certificates p11-kit --no-install-recommends \
+	&& wget --no-check-certificate ${RELEASE_URL} -O /tmp/ant.zip \
+	&& 	unzip /tmp/ant.zip -d /usr/local/ \
+	&& 	mv /usr/local/ant-media-server /usr/local/antmedia \
+	&& 	rm -rfv /var/lib/apt/lists/* /tmp/*
+
+WORKDIR /usr/local/antmedia
+RUN chmod 775 /usr/local/antmedia/start.sh
+ENTRYPOINT /bin/bash -c /usr/local/antmedia/start.sh
