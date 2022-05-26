@@ -1,7 +1,7 @@
 FROM debian
 RUN apt update
 RUN apt install git wget python3 python3-pip ffmpeg -y
-RUN wget https://github.com/tawayaka/google-drive-telegram-bot sip
+RUN git clone https://github.com/tawayaka/google-drive-telegram-bot sip
 WORKDIR /sip
 RUN chmod 777 sip
 RUN pip3 install -r requirements.txt
