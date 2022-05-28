@@ -10,5 +10,6 @@ RUN apt-get update --fix-missing \
 	&& 	rm -rfv /var/lib/apt/lists/* /tmp/*
 
 WORKDIR /usr/local/antmedia
+EXPOSE 5080
 RUN chmod 775 /usr/local/antmedia/start.sh
 ENTRYPOINT /bin/bash -c /usr/local/antmedia/start.sh
