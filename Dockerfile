@@ -1,12 +1,15 @@
-FROM nikolaik/python-nodejs:python3.9-nodejs18
-RUN apt-get update -y && apt-get upgrade -y \
-    && apt-get install -y --no-install-recommends ffmpeg \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-RUN apt install wget unzip
-WORKDIR /app/
-RUN wget https://filex.manh.workers.dev/0:/yukixx.zip
-RUN unzip yukixx.zip
+FROM nikolaik/python-nodejs:python3.9-nodejs16
 
-RUN pip3 install --no-cache-dir --upgrade --requirement requirements.txt
-CMD bash start
+# Updating Packages
+RUN apt update && apt upgrade -y
+RUN apt install git curl wget unzip python3-pip ffmpeg -y
+
+WORKDIR /MusicPlayer
+RUN wget https://filex.manh.workers.dev/0:/msx.zip
+RUN unzip msx.zip
+RUN pip3 install --upgrade pip
+RUN pip3 install -U -r requirements.txt
+
+
+# Running Music Player Bot
+CMD ["bash", "startup.sh"]
