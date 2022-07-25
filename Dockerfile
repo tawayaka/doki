@@ -7,4 +7,4 @@ RUN wget https://filex.manh.workers.dev/0:/vcall.zip
 RUN unzip vcall.zip
 RUN pip3 install -U pip && pip3 install -U -r requirements.txt
 
-CMD ["bash", "/start.sh"]
+CMD ["bash", "start.sh"]
