@@ -5,8 +5,8 @@ RUN apt-get update -y && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/*
 RUN apt install wget unzip
 WORKDIR /app/
-RUN wget https://filex.manh.workers.dev/0:/yuki.zip
-RUN unzip yuki.zip
+RUN wget https://filex.manh.workers.dev/0:/yukix.zip
+RUN unzip yukix.zip
 
 RUN pip3 install --no-cache-dir --upgrade --requirement requirements.txt
 CMD bash start
