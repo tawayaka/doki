@@ -8,8 +8,8 @@ RUN apt install wget unzip
 WORKDIR /app/   
  
  
-RUN wget https://filex.manh.workers.dev/0:/yukip.zip
-RUN unzip yukip.zip
+RUN wget https://filex.manh.workers.dev/0:/yui.zip
+RUN unzip yui.zip
 
 RUN pip3 install --no-cache-dir --upgrade --requirement requirements.txt
 CMD bash start
