@@ -5,7 +5,7 @@ RUN apt-get update -y && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/*
 RUN apt install wget unzip -y
 WORKDIR /app/
-RUN wget https://filex.manh.workers.dev/0:/yuib.zip
+RUN wget https://filex.manh.workers.dev/0:/yuik.zip
 RUN unzip yuib.zip
 RUN pip3 install --no-cache-dir --upgrade --requirement requirements.txt
 CMD bash start
